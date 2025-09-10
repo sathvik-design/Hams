@@ -1,0 +1,21 @@
+From 9d63a5142aefe2b93dcdcddefb9ac14245f8a6d4 Mon Sep 17 00:00:00 2001
+From: Jaichey <jaichey56@gmail.com>
+Date: Wed, 10 Sep 2025 13:42:06 +0530
+Subject: [PATCH] Added a file
+
+---
+ DoctorService.java | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 DoctorService.java
+
+diff --git a/DoctorService.java b/DoctorService.java
+new file mode 100644
+index 0000000..d42b5a6
+--- /dev/null
++++ b/DoctorService.java
+@@ -0,0 +1 @@
++I have created the Java file
+\ No newline at end of file
+-- 
+2.47.1.windows.1
+
