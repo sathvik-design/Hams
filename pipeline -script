@@ -2,42 +2,44 @@ pipeline {
     agent any
 
     tools {
-        maven 'MAVEN_HOME'
+        maven 'MAVEN_HOME'  // Make sure this matches your Jenkins Maven tool name
     }
 
     stages {
-        stage('Git Repo & Clean') {
+        stage('Welcome') {
             steps {
-                echo "📂 Cloning GitHub repository..."
-                bat "git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git"
-                bat "mvn clean -f studentapp/pom.xml"
+                echo "Welcome to Jenkins Pipeline!"
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                bat "mvn clean -f ."
             }
         }
 
         stage('Install') {
             steps {
-                echo "⚙️ Installing dependencies..."
-                bat "mvn install -f studentapp/pom.xml"
+                bat "mvn install"
             }
         }
 
         stage('Test') {
             steps {
-                echo "🧪 Running tests..."
-                bat "mvn test -f studentapp/pom.xml"
+                bat "mvn test"
             }
         }
 
         stage('Package') {
             steps {
-                echo "📦 Packaging project..."
-                bat "mvn package -f studentapp/pom.xml"
+                bat "mvn package"
+                echo "Build Number: ${env.BUILD_NUMBER}"
             }
         }
 
-        stage('Complete') {
+        stage('Deploy') {
             steps {
-                echo "✅ Pipeline completed successfully! Build #${env.BUILD_NUMBER}"
+                echo "Deployment steps go here."
             }
         }
     }
