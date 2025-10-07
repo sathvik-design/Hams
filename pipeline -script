@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'MAVEN-HOME'
+    }
+
+    stages {
+        stage('Git Repo & Clean') {
+            steps {
+                echo "📂 Cloning GitHub repository..."
+                bat "git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git"
+                bat "mvn clean -f studentapp/pom.xml"
+            }
+        }
+
+        stage('Install') {
+            steps {
+                echo "⚙️ Installing dependencies..."
+                bat "mvn install -f studentapp/pom.xml"
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "🧪 Running tests..."
+                bat "mvn test -f studentapp/pom.xml"
+            }
+        }
+
+        stage('Package') {
+            steps {
+                echo "📦 Packaging project..."
+                bat "mvn package -f studentapp/pom.xml"
+            }
+        }
+
+        stage('Complete') {
+            steps {
+                echo "✅ Pipeline completed successfully! Build #${env.BUILD_NUMBER}"
+            }
+        }
+    }
+}
